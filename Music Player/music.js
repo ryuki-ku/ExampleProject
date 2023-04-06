@@ -38,7 +38,7 @@ const music_list = [
     {
         img : 'images/gekko.png',
         name : 'greater than one',
-        artist : 'ericdoa and VALORANTr',
+        artist : 'ericdoa',
         music : 'musics/greater than one.mp3'
     },
 
@@ -52,7 +52,7 @@ const music_list = [
     {
         img : 'images/Linkin-Park.png',
         name : 'Lost',
-        artist : 'Linkin Park  ',
+        artist : 'Linkin Park',
         music : 'musics/Lost.mp3'
     },
 ];
@@ -62,7 +62,7 @@ loadTrack(track_index);
 
 function loadTrack(track_index){
     clearInterval(updateTimer);
-    reset();
+    // reset();
 
     curr_track.src = music_list[track_index].music;
     curr_track.load();
@@ -70,14 +70,16 @@ function loadTrack(track_index){
     track_art.style.backgroundImage = "url(" + music_list[track_index].img + ")";
     track_name.textContent = music_list[track_index].name;
     track_artist.textContent = music_list[track_index].artist;
-    now_playing.textContent = "Playing music " + (track_index + 1) + " of " + music_list.length;
+    now_playing.textContent = "Song " + (track_index + 1) + " of " + music_list.length;
 
     updateTimer = setInterval(setUpdate, 1000);
 
+    //move to another music after finish a song
     curr_track.addEventListener('ended', nextTrack);
     random_bg_color();
 }
 
+//Tạo màu background ngẫu nhiên
 function random_bg_color(){
     let hex = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e'];
     let a;
@@ -97,18 +99,23 @@ function random_bg_color(){
     let gradient = 'linear-gradient(' + angle + ',' + Color1 + ', ' + Color2 + ")";
     document.body.style.background = gradient;
 }
+
+//Hàm sau khi đổi nhạc thì chuyển giá trị về 0 hết
 function reset(){
     curr_time.textContent = "00:00";
     total_duration.textContent = "00:00";
     seek_slider.value = 0;
 }
+//Chạy random nhạc
 function randomTrack(){
-    isRandom ? pauseRandom() : playRandom();
+    // isRandom ? pauseRandom() : playRandom();
+    loadTrack(Math.floor(Math.random(track_index) * music_list.length ));
+    playTrack();
 }
-function playRandom(){
-    isRandom = true;
-    randomIcon.classList.add('randomActive');
-}
+// function playRandom(){
+//     isRandom = true;
+//     randomIcon.classList.add('randomActive');
+// }
 function pauseRandom(){
     isRandom = false;
     randomIcon.classList.remove('randomActive');
