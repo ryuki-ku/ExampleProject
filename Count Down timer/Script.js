@@ -1,4 +1,4 @@
-const newYears = 'Jan 1 2023';
+const newYears = 'Jan 1 2024';
 
 //hàm bên dưới cũng xài đc
 function TimesToday() {
