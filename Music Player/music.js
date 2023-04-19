@@ -116,10 +116,10 @@ function randomTrack(){
 //     isRandom = true;
 //     randomIcon.classList.add('randomActive');
 // }
-function pauseRandom(){
-    isRandom = false;
-    randomIcon.classList.remove('randomActive');
-}
+// function pauseRandom(){
+//     isRandom = false;
+//     randomIcon.classList.remove('randomActive');
+// }
 function repeatTrack(){
     let current_index = track_index;
     loadTrack(current_index);
